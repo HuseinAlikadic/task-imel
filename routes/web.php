@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,10 +15,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/home', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [PostController::class, 'showAllPost'])->name('posts');
+Route::get('/home', [PostController::class, 'showAllPost'])->name('posts');
+Route::get('/posts', [PostController::class, 'showAllPost'])->name('posts');
+Route::get('/post/{id}', [PostController::class, 'showOnePost'])->name('post');
+Route::get('/addPost', [PostController::class, 'addPostForm'])->name('addPost');
